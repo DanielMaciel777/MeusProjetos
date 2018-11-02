@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/10/2018 21:06:11 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.edu.qi.model.Despesa" table="despesa" catalog="dbpersonalmoney" optimistic-lock="version">
+        <id name="idDespesa" type="int">
+            <column name="idDespesa" />
+            <generator class="identity" />
+        </id>
+        <property name="idCategoria" type="int">
+            <column name="idCategoria" not-null="true" />
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="idUsuario" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="100" not-null="true" />
+        </property>
+        <property name="valor" type="double">
+            <column name="valor" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="dataDespesa" type="date">
+            <column name="dataDespesa" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
