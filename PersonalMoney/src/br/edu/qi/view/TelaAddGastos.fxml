@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.edu.qi.controller.TelaAddGastosController">
+   <children>
+      <SplitPane dividerPositions="0.1815856777493606" layoutX="4.0" layoutY="5.0" orientation="VERTICAL" prefHeight="393.0" prefWidth="593.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="173.0" layoutY="26.0" text="Personal Money - Adicionar Gastos" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <GridPane layoutX="14.0" layoutY="14.0" prefHeight="90.0" prefWidth="357.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Categoria:" />
+                        <Label text="Valor:" GridPane.rowIndex="1" />
+                        <Label text="Data:" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="cbCategoriaGastos" prefHeight="25.0" prefWidth="181.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="txValor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="dpData" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="14.0" layoutY="118.0" text="Descrição:" />
+                  <TextArea fx:id="txDescricao" layoutX="193.0" layoutY="118.0" prefHeight="80.0" prefWidth="178.0" />
+                  <HBox layoutX="24.0" layoutY="203.0" prefHeight="100.0" prefWidth="380.0" spacing="40.0">
+                     <children>
+                        <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#handBtSalvar" prefHeight="37.0" prefWidth="67.0" text="Salvar" />
+                        <Button fx:id="btLimpar" mnemonicParsing="false" onAction="#handBtLimpar" prefHeight="37.0" prefWidth="67.0" text="Limpar" />
+                        <Button fx:id="btListarGastos" mnemonicParsing="false" onAction="#handBtListarGastos" prefHeight="37.0" prefWidth="67.0" text="Listar" />
+                        <Button fx:id="btSair" mnemonicParsing="false" onAction="#handBtSair" prefHeight="37.0" prefWidth="67.0" text="Sair" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

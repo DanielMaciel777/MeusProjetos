@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.edu.qi.controller.TelaRecuperacaoSenhaController">
+   <children>
+      <SplitPane dividerPositions="0.18925831202046037" layoutX="14.0" layoutY="6.0" orientation="VERTICAL" prefHeight="393.0" prefWidth="584.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="246.0" layoutY="36.0" text="Personal Money - Recuperação de Senha" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <GridPane layoutX="8.0" layoutY="14.0" prefHeight="60.0" prefWidth="311.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Pergunta:" GridPane.rowIndex="1" />
+                        <Label text="Resposta:" GridPane.rowIndex="2" />
+                        <Label text="Usuário:" />
+                        <TextField fx:id="txUsuario" GridPane.columnIndex="1" />
+                        <TextField fx:id="txRespostaRecuperacao" prefHeight="39.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="cbPerguntaRecuperacao" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="btConfirmar" layoutY="111.0" mnemonicParsing="false" onAction="#handBtConfirmar" prefHeight="35.0" prefWidth="69.0" text="Confirmar" />
+                  <Button fx:id="btLimpar" layoutX="97.0" layoutY="111.0" mnemonicParsing="false" onAction="#handBtLimpar" prefHeight="35.0" prefWidth="69.0" text="Limpar" />
+                  <Button fx:id="btSair" layoutX="186.0" layoutY="111.0" mnemonicParsing="false" onAction="#handBtSair" prefHeight="35.0" prefWidth="69.0" text="Sair" />
+                  <GridPane layoutX="8.0" layoutY="173.0" prefHeight="90.0" prefWidth="247.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Nova Senha:" />
+                        <Label text="Repetir Senha:" GridPane.rowIndex="1" />
+                        <Label text="Pergunta:" GridPane.rowIndex="2" />
+                        <Label text="Resposta:" GridPane.rowIndex="3" />
+                        <TextField fx:id="txRespostaNova" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <PasswordField fx:id="txNovaSenha" GridPane.columnIndex="1" />
+                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cbPerguntaNova" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  <HBox layoutX="8.0" layoutY="264.0" prefHeight="48.0" prefWidth="247.0">
+                     <children>
+                        <Button fx:id="btSalvarSenha" mnemonicParsing="false" onAction="#handBtSalvarSenha" text="Salvar Senha" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

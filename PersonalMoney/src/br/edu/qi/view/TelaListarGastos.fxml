@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.edu.qi.controller.TelaListarGastosController">
+   <children>
+      <SplitPane dividerPositions="0.1636828644501279" layoutX="8.0" layoutY="6.0" orientation="VERTICAL" prefHeight="393.0" prefWidth="589.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="196.0" layoutY="22.0" text="Personal Money - Listar Gastos" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView fx:id="tableGastos" layoutX="5.0" layoutY="62.0" prefHeight="179.0" prefWidth="379.0">
+                    <columns>
+                      <TableColumn fx:id="tcIdGasto" prefWidth="75.0" text="IdGasto" />
+                      <TableColumn fx:id="tcCategoria" prefWidth="75.0" text="Categoria" />
+                        <TableColumn fx:id="tcDescricao" prefWidth="75.0" text="Descrição" />
+                        <TableColumn fx:id="tcValor" prefWidth="75.0" text="Valor" />
+                        <TableColumn fx:id="tcData" prefWidth="75.0" text="Data" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="14.0" layoutY="14.0" text="Filtrar por:" />
+                  <RadioButton fx:id="rbCategoria" layoutX="78.0" layoutY="14.0" mnemonicParsing="false" text="Categoria">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tgFiltroGasto" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbData" layoutX="78.0" layoutY="39.0" mnemonicParsing="false" text="Data" toggleGroup="$tgFiltroGasto" />
+                  <RadioButton fx:id="rbValor" layoutX="178.0" layoutY="14.0" mnemonicParsing="false" text="Valor" toggleGroup="$tgFiltroGasto" />
+                  <RadioButton fx:id="rbSemFiltro" layoutX="178.0" layoutY="39.0" mnemonicParsing="false" selected="true" text="Sem Filtro" toggleGroup="$tgFiltroGasto" />
+                  <Button fx:id="btFiltrar" layoutX="294.0" layoutY="10.0" mnemonicParsing="false" onAction="#handBtFiltrar" text="Filtrar" />
+                  <HBox layoutX="3.0" layoutY="249.0" prefHeight="75.0" prefWidth="387.0" spacing="40.0">
+                     <children>
+                        <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#handBtAlterar" prefHeight="35.0" prefWidth="64.0" text="Alterar" />
+                        <Button fx:id="btRemover" mnemonicParsing="false" onAction="#handBtRemover" prefHeight="36.0" prefWidth="64.0" text="Remover" />
+                        <Button fx:id="btAddGasto" mnemonicParsing="false" onAction="#handBtAddGasto" prefHeight="36.0" prefWidth="79.0" text="Novo Gasto" />
+                        <Button fx:id="btSair" mnemonicParsing="false" onAction="#handBtSair" prefHeight="38.0" prefWidth="60.0" text="Sair" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
