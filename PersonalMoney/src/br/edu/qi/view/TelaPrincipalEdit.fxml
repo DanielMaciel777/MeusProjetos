@@ -6,8 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.edu.qi.controller.TelaPrincipalEditController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.qi.controller.TelaPrincipalEditController">
    <children>
       <SplitPane dividerPositions="0.15844155844155844" layoutX="2.0" layoutY="10.0" orientation="VERTICAL" prefHeight="387.0" prefWidth="589.0">
         <items>
@@ -18,10 +17,9 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button fx:id="btAddGanho" layoutX="91.0" layoutY="70.0" mnemonicParsing="false" onAction="#handBtAddGanho" text="AddGanhos" />
-                  <Button fx:id="btAddGastos" layoutX="351.0" layoutY="70.0" mnemonicParsing="false" onAction="#handBtAddGastos" text="AddGastos" />
-                  <Button fx:id="btListarGanhos" layoutX="91.0" layoutY="208.0" mnemonicParsing="false" onAction="#handBtListarGanhos" text="Listar Ganhos" />
-                  <Button fx:id="btListarGastos" layoutX="351.0" layoutY="202.0" mnemonicParsing="false" onAction="#handBtListarGastos" text="Listar Gastos" />
+                  <Button fx:id="btAddGanhos" layoutX="80.0" layoutY="86.0" mnemonicParsing="false" onAction="#handBtAddGanhos" prefHeight="58.0" prefWidth="88.0" text="AddGanhos" />
+                  <Button fx:id="btAddGastos" layoutX="379.0" layoutY="85.0" mnemonicParsing="false" onAction="#handBtAddGastos" prefHeight="58.0" prefWidth="88.0" text="AddGastos" />
+                  <Button fx:id="btListarMovimentacao" layoutX="208.0" layoutY="84.0" mnemonicParsing="false" onAction="#handBtListarMovimentacao" prefHeight="58.0" prefWidth="129.0" text="Listar Movimentação" />
                </children>
             </AnchorPane>
         </items>

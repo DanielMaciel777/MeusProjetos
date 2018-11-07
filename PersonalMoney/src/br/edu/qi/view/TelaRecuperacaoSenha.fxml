@@ -6,8 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.edu.qi.controller.TelaRecuperacaoSenhaController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.qi.controller.TelaRecuperacaoSenhaController">
    <children>
       <SplitPane dividerPositions="0.18925831202046037" layoutX="14.0" layoutY="6.0" orientation="VERTICAL" prefHeight="393.0" prefWidth="584.0">
         <items>
@@ -58,7 +57,7 @@
                         <Label text="Resposta:" GridPane.rowIndex="3" />
                         <TextField fx:id="txRespostaNova" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <PasswordField fx:id="txNovaSenha" GridPane.columnIndex="1" />
-                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <PasswordField fx:id="txRepetirSenha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ComboBox fx:id="cbPerguntaNova" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>

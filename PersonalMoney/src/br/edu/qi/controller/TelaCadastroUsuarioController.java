@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -36,6 +37,8 @@ public class TelaCadastroUsuarioController implements Initializable {
     private Button btLimpar;
     @FXML
     private Button btSair;
+    
+    private Stage dialogStage;
              
     /**
      * Initializes the controller class.
@@ -43,7 +46,11 @@ public class TelaCadastroUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    } 
+    
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
     
     @FXML
     private void handBtSalvar(ActionEvent event){

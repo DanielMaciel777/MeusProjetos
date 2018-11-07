@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -58,6 +59,8 @@ public class TelaListarGanhosController implements Initializable {
    private Button btAddGastos;
    @FXML
    private Button btSair;
+   
+   private Stage dialogStage;
     /**
      * Initializes the controller class.
      */
@@ -66,6 +69,9 @@ public class TelaListarGanhosController implements Initializable {
         // TODO
     }    
     
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
     @FXML
     private void handBtAlterarGanhos(ActionEvent event){
         

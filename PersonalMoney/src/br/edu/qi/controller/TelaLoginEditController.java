@@ -41,6 +41,9 @@ public class TelaLoginEditController implements Initializable {
         // TODO
     }    
     
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
     @FXML
     private void handBtEntrar(ActionEvent event){
         

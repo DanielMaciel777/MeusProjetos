@@ -48,6 +48,10 @@ public class TelaAddGastosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
     }    
    @FXML
     private void handBtSalvar(ActionEvent event){
