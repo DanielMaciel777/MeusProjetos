@@ -7,7 +7,12 @@ package br.edu.qi.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
@@ -15,7 +20,44 @@ import javafx.fxml.Initializable;
  * @author danie
  */
 public class TelaListarGanhosController implements Initializable {
-
+   @FXML
+   private TableView tableGanhos;
+   @FXML
+   private TableColumn tcIdGanhos;
+   @FXML
+   private TableColumn tcDescricaoGanhos;
+   @FXML
+   private TableColumn tcCategoriaGanhos;
+   @FXML
+   private TableColumn tcValorGanhos;
+   @FXML
+   private TableColumn tcDataGanhos;
+   @FXML
+   private TableView tableGastos;
+   @FXML
+   private TableColumn tcIdGastos;
+   @FXML
+   private TableColumn tcCategoriaGastos;
+   @FXML
+   private TableColumn tcDescricaoGastos;
+   @FXML
+   private TableColumn tcValorGastos;
+   @FXML
+   private TableColumn tcDataGastos;
+   @FXML
+   private Button btAlterarGanhos;
+   @FXML
+   private Button btRemoverGanhos;
+   @FXML
+   private Button btAddGanhos;
+   @FXML
+   private Button btAlterarGastos;
+   @FXML
+   private Button btRemoverGastos;
+   @FXML
+   private Button btAddGastos;
+   @FXML
+   private Button btSair;
     /**
      * Initializes the controller class.
      */
@@ -24,4 +66,38 @@ public class TelaListarGanhosController implements Initializable {
         // TODO
     }    
     
+    @FXML
+    private void handBtAlterarGanhos(ActionEvent event){
+        
+    }
+    
+    @FXML
+    private void handBtRemoverGanhos(ActionEvent event){
+        
+    }
+    
+    @FXML
+    private void handBtAddGanhos(ActionEvent event){
+        
+    }
+    
+    @FXML
+    private void handBtAlterarGastos(ActionEvent event){
+        
+    }
+    
+    @FXML
+    private void handBtRemoverGastos(ActionEvent event){
+        
+    }
+    
+    @FXML
+    private void handBtAddGastos(ActionEvent event){
+        
+    }
+    
+    @FXML
+    private void handBtSair(ActionEvent event){
+        
+    }
 }

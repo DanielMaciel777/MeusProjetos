@@ -6,45 +6,53 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.edu.qi.controller.TelaListarGanhosController">
+<AnchorPane id="AnchorPane" prefHeight="536.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.qi.controller.TelaListarGanhosController">
    <children>
-      <SplitPane dividerPositions="0.19845360824742267" layoutX="8.0" layoutY="7.0" orientation="VERTICAL" prefHeight="390.0" prefWidth="590.0">
+      <SplitPane dividerPositions="0.10309278350515463" layoutX="4.0" layoutY="7.0" orientation="VERTICAL" prefHeight="529.0" prefWidth="678.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <Label layoutX="216.0" layoutY="14.0" text="Personal Money - Listar Ganhos" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="676.0">
                <children>
-                  <TableView fx:id="tableGanhos" layoutX="14.0" layoutY="64.0" prefHeight="168.0" prefWidth="379.0">
+                  <TableView fx:id="tableGanhos" layoutX="14.0" layoutY="31.0" prefHeight="168.0" prefWidth="379.0">
                     <columns>
                       <TableColumn fx:id="tcIdGanho" prefWidth="75.0" text="IdGanho" />
-                      <TableColumn fx:id="tcCategoria" prefWidth="75.0" text="Categoria" />
-                        <TableColumn fx:id="tcDescricao" prefWidth="75.0" text="Descrição" />
-                        <TableColumn fx:id="tcValor" prefWidth="75.0" text="Valor" />
-                        <TableColumn fx:id="tcData" prefWidth="75.0" text="Data" />
+                      <TableColumn fx:id="tcCategoriaGanhos" prefWidth="75.0" text="Categoria" />
+                        <TableColumn fx:id="tcDescricaoGanhos" prefWidth="75.0" text="Descrição" />
+                        <TableColumn fx:id="tcValorGanhos" prefWidth="75.0" text="Valor" />
+                        <TableColumn fx:id="tcDataGanhos" prefWidth="75.0" text="Data" />
                     </columns>
                   </TableView>
-                  <Label layoutX="22.0" layoutY="14.0" text="Filtrar por:" />
-                  <RadioButton fx:id="rbCategoria" layoutX="96.0" layoutY="14.0" mnemonicParsing="false" text="Categoria">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="txFiltroGanhos" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="rbValor" layoutX="96.0" layoutY="42.0" mnemonicParsing="false" text="Valor" toggleGroup="$txFiltroGanhos" />
-                  <RadioButton fx:id="rbData" layoutX="183.0" layoutY="18.0" mnemonicParsing="false" text="Data" toggleGroup="$txFiltroGanhos" />
-                  <Button fx:id="btFiltrar" layoutX="331.0" layoutY="11.0" mnemonicParsing="false" onAction="#handBtFiltrar" prefHeight="32.0" prefWidth="64.0" text="Filtrar" />
-                  <HBox layoutX="16.0" layoutY="232.0" prefHeight="74.0" prefWidth="379.0" spacing="40.0">
+                  <HBox layoutX="14.0" layoutY="199.0" prefHeight="39.0" prefWidth="379.0" spacing="40.0" />
+                  <Label layoutX="16.0" layoutY="14.0" text="Lista de Ganhos" />
+                  <Label layoutX="14.0" layoutY="249.0" text="Lista de Gastos" />
+                  <TableView fx:id="tableGastos" layoutX="14.0" layoutY="273.0" prefHeight="197.0" prefWidth="379.0">
+                    <columns>
+                      <TableColumn fx:id="tcIdGasto" prefWidth="75.0" text="IdGasto" />
+                      <TableColumn fx:id="tcCategoriaGastos" prefWidth="75.0" text="Categoria" />
+                        <TableColumn fx:id="tcDescricaoGastos" prefWidth="75.0" text="Descrição" />
+                        <TableColumn fx:id="tcValorGastos" prefWidth="75.0" text="Valor" />
+                        <TableColumn fx:id="tcDataGastos" prefWidth="75.0" text="Data" />
+                    </columns>
+                  </TableView>
+                  <VBox layoutX="400.0" layoutY="272.0" prefHeight="200.0" prefWidth="114.0" spacing="40.0">
                      <children>
-                        <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#handBtAlterar" prefHeight="35.0" prefWidth="58.0" text="Alterar" />
-                        <Button fx:id="btRemover" mnemonicParsing="false" onAction="#handBtRemover" prefHeight="36.0" prefWidth="64.0" text="Remover" />
-                        <Button fx:id="btAddGanho" mnemonicParsing="false" onAction="#handBtAddGanho" prefHeight="35.0" prefWidth="84.0" text="Novo Ganho" />
-                        <Button fx:id="btSair" mnemonicParsing="false" onAction="#handBtSair" prefHeight="33.0" prefWidth="52.0" text="Sair" />
+                        <Button fx:id="btAlterarGasto" mnemonicParsing="false" onAction="#handBtAlterarGasto" prefHeight="39.0" prefWidth="117.0" text="Alterar Gasto" />
+                        <Button fx:id="btRemoverGasto" mnemonicParsing="false" onAction="#handBtRemoverGasto" prefHeight="38.0" prefWidth="118.0" text="Remover Gasto" />
+                        <Button fx:id="btAddGasto" mnemonicParsing="false" onAction="#handBtAddGasto" prefHeight="36.0" prefWidth="115.0" text="Novo Gasto" />
                      </children>
-                  </HBox>
-                  <RadioButton fx:id="rbSemFiltro" layoutX="183.0" layoutY="42.0" mnemonicParsing="false" selected="true" text="Sem Filtro" toggleGroup="$txFiltroGanhos" />
+                  </VBox>
+                  <VBox layoutX="393.0" layoutY="31.0" prefHeight="168.0" prefWidth="114.0" spacing="40.0">
+                     <children>
+                        <Button fx:id="btAlterarGanho" mnemonicParsing="false" onAction="#handBtAlterarGanho" prefHeight="35.0" prefWidth="120.0" text="Alterar Ganho" />
+                        <Button fx:id="btRemoverGanho" mnemonicParsing="false" onAction="#handBtRemoverGanho" prefHeight="39.0" prefWidth="121.0" text="Remover Ganho" />
+                        <Button fx:id="btAddGanho" mnemonicParsing="false" onAction="#handBtAddGanho" prefHeight="35.0" prefWidth="116.0" text="Novo Ganho" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="btSair" layoutX="553.0" layoutY="425.0" mnemonicParsing="false" onAction="#handBtSair" prefHeight="45.0" prefWidth="70.0" text="Sair" />
                </children>
             </AnchorPane>
         </items>
