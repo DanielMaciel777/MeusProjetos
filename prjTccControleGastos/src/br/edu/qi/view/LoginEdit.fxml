@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.edu.qi.controller.LoginEditController">
+    <stylesheets>
+        <URL value="@loginedit.css" />
+    </stylesheets>
+   <children>
+      <SplitPane dividerPositions="0.15436241610738255" orientation="VERTICAL" prefHeight="300.0" prefWidth="400.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="2.0" text="Personal Money - Login">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <GridPane layoutX="8.0" layoutY="14.0" prefHeight="90.0" prefWidth="218.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="67.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.0" minWidth="10.0" prefWidth="95.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Usuário:" />
+                        <TextField fx:id="txUsuario" GridPane.columnIndex="1" />
+                        <Label text="Senha:" GridPane.rowIndex="1" />
+                        <TextField fx:id="txSenha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="btEntrar" mnemonicParsing="false" onAction="#handBtEntrar" prefHeight="25.0" prefWidth="84.0" text="Entrar" GridPane.rowIndex="2" />
+                        <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#handBtCancelar" prefHeight="25.0" prefWidth="81.0" text="Cancelar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="btMudarSenha" layoutX="8.0" layoutY="112.0" mnemonicParsing="false" onAction="#handBtMudarSenha" text="Esqueci a senha" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

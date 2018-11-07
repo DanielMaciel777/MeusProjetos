@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/10/2018 21:06:11 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.edu.qi.model.Usuario" table="usuario" catalog="dbpersonalmoney" optimistic-lock="version">
+        <id name="idUsuario" type="int">
+            <column name="idUsuario" />
+            <generator class="identity" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" length="30" not-null="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="12" not-null="true" />
+        </property>
+        <property name="saldoAtual" type="double">
+            <column name="saldoAtual" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
