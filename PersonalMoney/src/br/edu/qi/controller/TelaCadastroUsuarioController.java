@@ -46,6 +46,8 @@ public class TelaCadastroUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        cbPerguntaSenha.getItems().addAll("Nome da Mãe?","Nome do Pai?","Nome Animal de Estimação",
+                "Filme Favorito");
     } 
     
     public void setDialogStage(Stage dialogStage) {
