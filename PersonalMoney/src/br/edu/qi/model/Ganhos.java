@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,10 +40,9 @@ public class Ganhos  implements java.io.Serializable {
        this.dataGanhos = dataGanhos;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
-    @Column(name="idGanhos", unique=true, nullable=false)
+     @Id
+     @GeneratedValue(strategy=GenerationType.IDENTITY)
+     @Column(name="idGanhos", unique=true, nullable=false)
     public Integer getIdGanhos() {
         return this.idGanhos;
     }

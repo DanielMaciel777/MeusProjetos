@@ -4,7 +4,7 @@
 <!-- Generated 07/11/2018 20:47:18 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.edu.qi.model.Gastos" table="gastos" catalog="dbpersonalmoney" optimistic-lock="version">
-        <id name="idGastos" type="java.lang.Integer">
+        <id name="idGastos" type="int">
             <column name="idGastos" />
             <generator class="identity" />
         </id>
