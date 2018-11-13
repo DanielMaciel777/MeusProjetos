@@ -27,9 +27,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader= new FXMLLoader(Main.class.getResource("view/TelaLoginEdit.fxml"));
-        AnchorPane root= (AnchorPane) loader.load();
+        AnchorPane root = (AnchorPane)loader.load();
         Stage dialogStage= new Stage();
-        dialogStage.setTitle("Concessionaria");
+        dialogStage.setTitle("Personal Money");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         Scene scene= new Scene(root);
         dialogStage.setScene(scene);

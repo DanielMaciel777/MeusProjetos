@@ -44,4 +44,13 @@ public class UsuarioBO {
         listaUsuario = dao.findAll();
         return listaUsuario;
     }
+    
+    public Usuario realizarLogin(String usuario,String senha){
+        for (Usuario usu : listaUsuario) {
+            if(usu.getNome().equals(usuario)&&usu.getSenha().equals(senha)){
+                return usu;
+            }
+        }
+        return null;
+    }
 }

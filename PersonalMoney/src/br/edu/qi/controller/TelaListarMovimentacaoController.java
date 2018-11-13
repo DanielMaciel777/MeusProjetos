@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  *
  * @author danie
  */
-public class TelaListarGanhosController implements Initializable {
+public class TelaListarMovimentacaoController implements Initializable {
    @FXML
    private TableView tableGanhos;
    @FXML

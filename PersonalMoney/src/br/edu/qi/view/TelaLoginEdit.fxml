@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.qi.controller.TelaLoginEditController">
    <children>
       <SplitPane dividerPositions="0.14112903225806453" layoutX="-1.0" orientation="VERTICAL" prefHeight="250.0" prefWidth="318.0">
         <items>
@@ -34,10 +34,15 @@
                         <PasswordField fx:id="txSenha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <HBox layoutX="4.0" layoutY="130.0" prefHeight="72.0" prefWidth="308.0" spacing="50.0">
+                  <HBox layoutX="4.0" layoutY="130.0" prefHeight="32.0" prefWidth="308.0" spacing="20.0">
                      <children>
                         <Button fx:id="btEntrar" mnemonicParsing="false" onAction="#handBtEntrar" text="Entrar" />
                         <Button fx:id="btLimpar" mnemonicParsing="false" onAction="#handBtLimpar" text="Limpar" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="7.0" layoutY="160.0" prefHeight="49.0" prefWidth="301.0">
+                     <children>
+                        <Button fx:id="btCadastrar" mnemonicParsing="false" onAction="#handBtCadastrar" text="Cadastrar" />
                         <Button fx:id="btSenha" mnemonicParsing="false" onAction="#handBtSenha" text="Esqueci a senha" />
                      </children>
                   </HBox>
