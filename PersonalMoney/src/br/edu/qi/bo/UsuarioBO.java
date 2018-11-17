@@ -39,12 +39,25 @@ public class UsuarioBO {
 
         dao.save(u);
     }
+    
+    public void alterarUsuario(Usuario u) throws Exception{
+        if(!existeUsuario(u)){
+            throw new Exception("Usuário não existe");
+        }
+        dao.update(u);
+    }
 
     public List<Usuario> listarUsuario() {
         listaUsuario = dao.findAll();
         return listaUsuario;
     }
     
+    public void removerUsuario(Usuario u) throws Exception{
+        if(!existeUsuario(u)){
+            throw new Exception("Usuário não existe");
+        }
+        dao.delete(u);
+    }
     public Usuario realizarLogin(String usuario,String senha){
         for (Usuario usu : listaUsuario) {
             if(usu.getNome().equals(usuario)&&usu.getSenha().equals(senha)){

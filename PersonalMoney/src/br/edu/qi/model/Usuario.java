@@ -1,11 +1,12 @@
 package br.edu.qi.model;
-// Generated 07/11/2018 20:47:15 by Hibernate Tools 4.3.1
+// Generated 16/11/2018 10:59:11 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,30 +20,30 @@ import javax.persistence.Table;
 public class Usuario  implements java.io.Serializable {
 
 
-     private Integer idUsuario;
+     private int idUsuario;
      private String nome;
      private String senha;
-     private String pergunta;
-     private String resposta;
+     private double valorBanco;
+     private double valorCasa;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String senha, String pergunta, String resposta) {
+    public Usuario(String nome, String senha, double valorBanco, double valorCasa) {
        this.nome = nome;
        this.senha = senha;
-       this.pergunta = pergunta;
-       this.resposta = resposta;
+       this.valorBanco = valorBanco;
+       this.valorCasa = valorCasa;
     }
    
      @Id 
      @GeneratedValue(strategy=GenerationType.IDENTITY)
      @Column(name="idUsuario", unique=true, nullable=false)
-    public Integer getIdUsuario() {
+    public int getIdUsuario() {
         return this.idUsuario;
     }
     
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -57,7 +58,7 @@ public class Usuario  implements java.io.Serializable {
     }
 
     
-    @Column(name="senha", nullable=false, length=12)
+    @Column(name="senha", nullable=false, length=10)
     public String getSenha() {
         return this.senha;
     }
@@ -67,23 +68,23 @@ public class Usuario  implements java.io.Serializable {
     }
 
     
-    @Column(name="pergunta", nullable=false, length=30)
-    public String getPergunta() {
-        return this.pergunta;
+    @Column(name="valorBanco", nullable=false, precision=22, scale=0)
+    public double getValorBanco() {
+        return this.valorBanco;
     }
     
-    public void setPergunta(String pergunta) {
-        this.pergunta = pergunta;
+    public void setValorBanco(double valorBanco) {
+        this.valorBanco = valorBanco;
     }
 
     
-    @Column(name="resposta", nullable=false, length=30)
-    public String getResposta() {
-        return this.resposta;
+    @Column(name="valorCasa", nullable=false, precision=22, scale=0)
+    public double getValorCasa() {
+        return this.valorCasa;
     }
     
-    public void setResposta(String resposta) {
-        this.resposta = resposta;
+    public void setValorCasa(double valorCasa) {
+        this.valorCasa = valorCasa;
     }
 
 

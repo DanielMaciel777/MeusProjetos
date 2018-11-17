@@ -44,7 +44,7 @@ public class TelaLoginEditController implements Initializable {
     
     private Stage dialogStage;
     private UsuarioBO bo;
-    
+    private static Usuario usu;
     /**
      * Initializes the controller class.
      */
@@ -52,7 +52,9 @@ public class TelaLoginEditController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+    public Usuario getUsuarioLogado(){
+        return usu;
+    }
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
@@ -69,7 +71,7 @@ public class TelaLoginEditController implements Initializable {
     private void handBtEntrar(ActionEvent event){
         try {
             validacao();
-            Usuario usu = bo.realizarLogin(txUsuario.getText(), txSenha.getText());
+            usu = bo.realizarLogin(txUsuario.getText(), txSenha.getText());
             if(usu!=null){
             openWindow("/br/edu/qi/view/TelaPrincipalEdit.fxml", "Tela Principal");
             }else{

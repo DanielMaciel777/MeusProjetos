@@ -1,5 +1,5 @@
 package br.edu.qi.model;
-// Generated 07/11/2018 20:47:15 by Hibernate Tools 4.3.1
+// Generated 16/11/2018 10:59:11 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,7 +23,7 @@ import javax.persistence.TemporalType;
 public class Gastos  implements java.io.Serializable {
 
 
-     private Integer idGastos;
+     private int idGastos;
      private String categoria;
      private int idUsuario;
      private String descricao;
@@ -40,14 +41,14 @@ public class Gastos  implements java.io.Serializable {
        this.dataGastos = dataGastos;
     }
    
-     @Id
+     @Id 
      @GeneratedValue(strategy=GenerationType.IDENTITY)
      @Column(name="idGastos", unique=true, nullable=false)
-    public Integer getIdGastos() {
+    public int getIdGastos() {
         return this.idGastos;
     }
     
-    public void setIdGastos(Integer idGastos) {
+    public void setIdGastos(int idGastos) {
         this.idGastos = idGastos;
     }
 

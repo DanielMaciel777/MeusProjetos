@@ -100,8 +100,6 @@ public class TelaCadastroUsuarioController implements Initializable {
             
             usuario.setNome(txUsuario.getText());
             usuario.setSenha(txSenha.getText());
-            usuario.setPergunta(cbPerguntaSenha.getSelectionModel().getSelectedItem().toString());
-            usuario.setResposta(txRespostaSenha.getText());
             bo.cadastrarUsuario(usuario);
             Util.msgDialog("Usuário gravado com sucesso!", Alert.AlertType.INFORMATION);
         } catch (Exception ex) {

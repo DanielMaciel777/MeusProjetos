@@ -28,34 +28,36 @@ public abstract class GenericDao<T, ID extends Serializable> implements Serializ
 	}
 	
 	public void save(T e)throws Exception{
-		s = HibernateUtil.getSessionFactory().openSession();
+		s = NewHibernateUtil.getSessionFactory().openSession();
 		t = s.beginTransaction();
 		s.save(e);
 		t.commit();
+                
+                
 		s.close();
 	}
 	public void update(T e)throws Exception{
-		s = HibernateUtil.getSessionFactory().openSession();
+		s = NewHibernateUtil.getSessionFactory().openSession();
 		t = s.beginTransaction();
 		s.update(e);
 		t.commit();
 		s.close();
 	}
 	public void delete(T e)throws Exception{
-		s = HibernateUtil.getSessionFactory().openSession();
+		s = NewHibernateUtil.getSessionFactory().openSession();
 		t = s.beginTransaction();
 		s.delete(e);
 		t.commit();
 		s.close();
 	}
 	public List<T> findAll(){
-		s = HibernateUtil.getSessionFactory().openSession();
+		s = NewHibernateUtil.getSessionFactory().openSession();
 		List<T> lista = s.createCriteria(entity.getClass()).list();
 		s.close();
 		return lista;
 	}
         public List<T> findAllWithoutClose(){
-		s = HibernateUtil.getSessionFactory().openSession();
+		s = NewHibernateUtil.getSessionFactory().openSession();
 		List<T> lista = s.createCriteria(entity.getClass()).list();
 		return lista;
 	}
@@ -65,7 +67,7 @@ public abstract class GenericDao<T, ID extends Serializable> implements Serializ
             }
         }
 	public T findByCod(ID cod){
-		s = HibernateUtil.getSessionFactory().openSession();
+		s = NewHibernateUtil.getSessionFactory().openSession();
 		T e = (T) s.get(entity.getClass(), cod);
 		s.close();
 		return e;
