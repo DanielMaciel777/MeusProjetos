@@ -7,6 +7,7 @@ package br.edu.qi.controller;
 
 import br.edu.qi.bo.UsuarioBO;
 import br.edu.qi.model.Usuario;
+import br.edu.qi.util.Sessao;
 import br.edu.qi.util.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +45,9 @@ public class TelaLoginEditController implements Initializable {
     
     private Stage dialogStage;
     private UsuarioBO bo;
-    private static Usuario usu;
+    //private static Usuario usu;
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -52,9 +55,9 @@ public class TelaLoginEditController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    public Usuario getUsuarioLogado(){
-        return usu;
-    }
+    //public Usuario getUsuarioLogado(){
+      //  return usu;
+    //}
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
@@ -71,8 +74,11 @@ public class TelaLoginEditController implements Initializable {
     private void handBtEntrar(ActionEvent event){
         try {
             validacao();
-            usu = bo.realizarLogin(txUsuario.getText(), txSenha.getText());
-            if(usu!=null){
+            
+            Usuario us=bo.realizarLogin(txUsuario.getText(), txSenha.getText());
+            Sessao sessao = Sessao.getInstance();
+            sessao.setUsuario(us);
+            if(us!=null){
             openWindow("/br/edu/qi/view/TelaPrincipalEdit.fxml", "Tela Principal");
             }else{
                 Util.msgDialog("Usuário ou senha estão incorretos", Alert.AlertType.ERROR);
