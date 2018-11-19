@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,44 +10,89 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.qi.controller.TelaAddGanhosController">
    <children>
-      <SplitPane dividerPositions="0.19437340153452684" layoutX="1.0" layoutY="3.0" orientation="VERTICAL" prefHeight="393.0" prefWidth="594.0">
+      <SplitPane dividerPositions="0.11764705882352941" layoutX="1.0" layoutY="3.0" orientation="VERTICAL" prefHeight="512.0" prefWidth="594.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Label layoutX="256.0" layoutY="28.0" text="Personal Money - Adicionar Ganhos" />
+                  <Label layoutX="113.0" layoutY="9.0" text="Personal Money - Receitas" textFill="#1d83c6">
+                     <font>
+                        <Font name="Comic Sans MS" size="28.0" />
+                     </font></Label>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="592.0">
                <children>
-                  <GridPane layoutX="14.0" layoutY="14.0" prefHeight="90.0" prefWidth="349.0">
+                  <GridPane layoutX="14.0" layoutY="14.0" prefHeight="110.0" prefWidth="273.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="145.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="452.0" minWidth="10.0" prefWidth="163.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="104.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="452.0" minWidth="10.0" prefWidth="105.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Categoria:" />
-                        <Label text="Valor:" GridPane.rowIndex="1" />
-                        <Label text="Data:" GridPane.rowIndex="2" />
-                        <ComboBox fx:id="cbCategoriaGanhos" prefHeight="25.0" prefWidth="186.0" GridPane.columnIndex="1" />
-                        <TextField fx:id="txValor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Categoria:" textFill="#1f6ec3">
+                           <font>
+                              <Font name="Comic Sans MS" size="18.0" />
+                           </font></Label>
+                        <Label text="Valor:" textFill="#2a60cd" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Comic Sans MS" size="18.0" />
+                           </font></Label>
+                        <Label text="Data:" textFill="#2168ae" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Comic Sans MS" size="18.0" />
+                           </font></Label>
+                        <ComboBox fx:id="cbCategoria" prefHeight="25.0" prefWidth="186.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="txValor" prefHeight="25.0" prefWidth="141.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <DatePicker fx:id="dpData" prefHeight="25.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Forma Pagamento:" textFill="#1f44c9" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Comic Sans MS" size="13.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cbForma" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <Label layoutX="14.0" layoutY="115.0" text="Descrição:" />
-                  <TextArea fx:id="txDescricao" layoutX="179.0" layoutY="104.0" prefHeight="90.0" prefWidth="183.0" />
-                  <HBox layoutX="14.0" layoutY="212.0" prefHeight="100.0" prefWidth="382.0" spacing="40.0">
+                  <Label layoutX="296.0" layoutY="14.0" text="Descrição:" textFill="#22649a">
+                     <font>
+                        <Font name="Comic Sans MS" size="19.0" />
+                     </font></Label>
+                  <TextArea fx:id="txDescricao" layoutX="389.0" layoutY="14.0" prefHeight="90.0" prefWidth="183.0" />
+                  <HBox layoutX="26.0" layoutY="351.0" prefHeight="40.0" prefWidth="382.0" spacing="40.0">
                      <children>
-                        <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#handBtSalvar" prefHeight="39.0" prefWidth="65.0" text="Salvar" />
-                        <Button fx:id="btLimpar" mnemonicParsing="false" onAction="#handBtLimpar" prefHeight="39.0" prefWidth="65.0" text="Limpar" />
-                        <Button fx:id="btListarGanhos" mnemonicParsing="false" onAction="#handBtListarGanhos" prefHeight="39.0" prefWidth="65.0" text="Listar" />
-                        <Button fx:id="btSair" mnemonicParsing="false" onAction="#handBtSair" prefHeight="39.0" prefWidth="65.0" text="Sair" />
+                        <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#handBtSalvar" prefHeight="39.0" prefWidth="65.0" text="Salvar" textFill="#30a14d">
+                           <font>
+                              <Font name="Comic Sans MS" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#handBtAlterar" prefHeight="39.0" prefWidth="70.0" text="Alterar" textFill="#4e1cab">
+                           <font>
+                              <Font name="Comic Sans MS" size="13.0" />
+                           </font></Button>
+                        <Button fx:id="btRemover" mnemonicParsing="false" onAction="#handBtRemover" prefHeight="39.0" prefWidth="75.0" text="Remover" textFill="#da4c1c">
+                           <font>
+                              <Font name="Comic Sans MS" size="13.0" />
+                           </font></Button>
+                        <Button fx:id="btLogout" mnemonicParsing="false" onAction="#handBtLogout" prefHeight="39.0" prefWidth="65.0" text="Logout" textFill="#8e20d7">
+                           <font>
+                              <Font name="Comic Sans MS" size="13.0" />
+                           </font>
+                        </Button>
                      </children>
                   </HBox>
+                  <TableView fx:id="tableReceita" layoutY="135.0" prefHeight="200.0" prefWidth="433.0">
+                    <columns>
+                      <TableColumn fx:id="tcUsuario" prefWidth="75.0" text="Usuário" />
+                      <TableColumn fx:id="tcCategoria" prefWidth="75.0" text="Categoria" />
+                        <TableColumn fx:id="tcValor" prefWidth="75.0" text="Valor" />
+                        <TableColumn fx:id="tcForma" prefWidth="110.0" text="Forma Pagamento" />
+                        <TableColumn fx:id="tcData" prefWidth="97.0" text="Data" />
+                    </columns>
+                  </TableView>
                </children>
             </AnchorPane>
         </items>
