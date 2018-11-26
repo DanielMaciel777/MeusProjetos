@@ -66,4 +66,12 @@ public class UsuarioBO {
         }
         return null;
     }
+    public Usuario getUsuarioId(int id){
+        for (Usuario usuario : listaUsuario) {
+            if(usuario.getIdUsuario()==id){
+                return usuario;
+            }
+        }
+        return null;
+    }
 }

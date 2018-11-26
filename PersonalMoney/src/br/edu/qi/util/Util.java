@@ -31,5 +31,18 @@ public class Util {
         }
     }
     
+    public static String converteData(Date valor){
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String texto = formato.format(valor);
+        return texto;
+    }
     
+    public static boolean testarValor(String texto){
+        try {
+            double valor = Double.parseDouble(texto);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

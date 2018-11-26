@@ -121,4 +121,7 @@ public class GanhosBO {
         }
         usuDao.update(usu);
     }
+    public Ganhos buscaId(int id){
+        return dao.findByCod(id);
+    }
 }

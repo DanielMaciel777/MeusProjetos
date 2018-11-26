@@ -6,6 +6,7 @@
 package br.edu.qi.view;
 
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -13,12 +14,19 @@ import javafx.beans.property.SimpleStringProperty;
  * @author danie
  */
 public class ReceitaModel {
+    private SimpleIntegerProperty idGanho = new SimpleIntegerProperty();
     private SimpleStringProperty usuario = new SimpleStringProperty();
     private SimpleStringProperty categoria = new SimpleStringProperty();
     private SimpleStringProperty formaPagamento = new SimpleStringProperty();
     private SimpleStringProperty data = new SimpleStringProperty();
     private SimpleDoubleProperty valor = new SimpleDoubleProperty();
 
+    public int getIdGanho(){
+        return idGanho.get();
+    }
+    public void setIdGanho(int id){
+        this.idGanho.setValue(id);
+    }
     public String getUsuario() {
         return usuario.get();
     }
