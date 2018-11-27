@@ -63,6 +63,7 @@
                         <Button fx:id="btRemover" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#handBtRemover" prefHeight="48.0" prefWidth="64.0" text="Remover" />
                         <Button fx:id="btLogout" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#handBtLogout" prefHeight="45.0" prefWidth="62.0" text="Logout" />
                      </children></HBox>
+                  <Button fx:id="btConfirmar" layoutX="420.0" layoutY="347.0" mnemonicParsing="false" onAction="#handBtConfirmar" prefHeight="45.0" prefWidth="133.0" text="Confirmar Alteração" />
                </children>
             </AnchorPane>
         </items>

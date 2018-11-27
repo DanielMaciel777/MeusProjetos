@@ -13,6 +13,9 @@ import br.edu.qi.util.Sessao;
 import br.edu.qi.util.Util;
 import br.edu.qi.view.ReceitaModel;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -102,7 +105,9 @@ public class TelaReceitaController implements Initializable {
        try {
            validacao();
            ganho.setCategoria(cbCategoria.getSelectionModel().getSelectedItem().toString());
-           ganho.setDataGanhos(Util.validaData(dpData.toString()));
+           LocalDate localDate = dpData.getValue();
+           Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+           ganho.setDataGanhos(date);
            ganho.setDescricao(txDescricao.getText());
            ganho.setFormaPagamento(cbForma.getSelectionModel().getSelectedItem().toString());
            ganho.setIdUsuario(usuario.getIdUsuario());
@@ -115,22 +120,59 @@ public class TelaReceitaController implements Initializable {
     }
     @FXML
     private void handBtAlterar(ActionEvent event){
+        if(!validarSelecao()){
+            Util.msgDialog("Selecione uma linha!", Alert.AlertType.INFORMATION);
+        }else{
         recModel = (ReceitaModel)tableReceita.getSelectionModel().getSelectedItem();
         ganho = bo.buscaId(recModel.getIdGanho());
         txDescricao.setText(ganho.getDescricao());
         txValor.setText(String.valueOf(ganho.getValor()));
         cbCategoria.getSelectionModel().select(ganho.getCategoria());
-        
+        cbForma.getSelectionModel().select(ganho.getFormaPagamento());
+        Date date = ganho.getDataGanhos();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        dpData.setValue(localDate);
+    }
     }
     @FXML
     private void handBtRemover(ActionEvent event){
-        
+         if(!validarSelecao()){
+             Util.msgDialog("Selecione uma Linha!", Alert.AlertType.INFORMATION);
+         }else{
+             recModel = (ReceitaModel)tableReceita.getSelectionModel().getSelectedItem();
+             ganho = bo.buscaId(recModel.getIdGanho());
+             try {
+                 bo.removerGanho(ganho);
+                 Util.msgDialog("Ganho removido com sucesso!", Alert.AlertType.INFORMATION);
+             } catch (Exception ex) {
+                 Util.msgDialog(ex.getMessage(), Alert.AlertType.ERROR);
+             }
+         }
     }
     @FXML
     private void handBtLogout(ActionEvent event){
+        Sessao.getInstance().setUsuario(null);
         
     }
-    
+    @FXML
+    private void handBtConfirmar(ActionEvent event){
+        Ganhos novoGanho = new Ganhos();
+        novoGanho.setCategoria(cbCategoria.getSelectionModel().getSelectedItem().toString());
+        novoGanho.setDescricao(txDescricao.getText());
+        novoGanho.setFormaPagamento(cbForma.getSelectionModel().getSelectedItem().toString());
+        novoGanho.setIdGanhos(ganho.getIdGanhos());
+        novoGanho.setIdUsuario(usuario.getIdUsuario());
+        novoGanho.setValor(Double.parseDouble(txValor.getText()));
+        LocalDate localDate = dpData.getValue();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        novoGanho.setDataGanhos(date);
+       try {
+           bo.alterarGanhos(novoGanho, ganho);
+           Util.msgDialog("Alteração concluida com sucesso", Alert.AlertType.INFORMATION);
+       } catch (Exception ex) {
+           Util.msgDialog(ex.getMessage(), Alert.AlertType.ERROR);
+       }
+    }
     private void addTabela(Ganhos ganho){
         ReceitaModel dados = new ReceitaModel();
         dados.setIdGanho(ganho.getIdGanhos());
@@ -158,5 +200,12 @@ public class TelaReceitaController implements Initializable {
         if(txDescricao.getText().trim().length()==0){
             throw new Exception("Informe uma descrição para o ganho");
         }
+    }
+    private boolean validarSelecao(){
+        int linha = tableReceita.getSelectionModel().getSelectedIndex();
+        if(linha<0){
+            return false;
+        }
+        return true;
     }
 }

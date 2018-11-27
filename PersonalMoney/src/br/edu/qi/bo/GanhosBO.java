@@ -124,4 +124,12 @@ public class GanhosBO {
     public Ganhos buscaId(int id){
         return dao.findByCod(id);
     }
+    public void removerGanho(Ganhos ganho) throws Exception{
+        listaGanhos = dao.findAll();
+        for (Ganhos listaGanho : listaGanhos) {
+            if(listaGanho.getIdGanhos()==ganho.getIdGanhos()){
+                dao.delete(ganho);
+            }
+        }
+    }
 }
