@@ -53,7 +53,8 @@ public class TelaLoginEditController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // 
+        bo = new UsuarioBO();
     }    
     //public Usuario getUsuarioLogado(){
       //  return usu;
@@ -78,11 +79,8 @@ public class TelaLoginEditController implements Initializable {
             Usuario us=bo.realizarLogin(txUsuario.getText(), txSenha.getText());
             Sessao sessao = Sessao.getInstance();
             sessao.setUsuario(us);
-            if(us!=null){
-            openWindow("/br/edu/qi/view/TelaPrincipalEdit.fxml", "Tela Principal");
-            }else{
-                Util.msgDialog("Usuário ou senha estão incorretos", Alert.AlertType.ERROR);
-            }
+            openWindow("/br/edu/qi/view/TelaHome.fxml", "Tela Principal");
+            
         } catch (Exception e) {
             Util.msgDialog(e.getMessage(), Alert.AlertType.ERROR);
         }
@@ -107,7 +105,7 @@ public class TelaLoginEditController implements Initializable {
     @FXML
     private void handBtCadastrar(ActionEvent event){
         try {
-            openWindow("/br/edu/qi/view/TelaCadastroUsuario.fxml", "Cadastro de Usuário");
+            openWindow("/br/edu/qi/view/TelaCadastroUsuari.fxml", "Cadastro de Usuário");
         } catch (Exception e) {
             Util.msgDialog(e.getMessage(), Alert.AlertType.ERROR);
         }

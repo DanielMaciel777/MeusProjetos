@@ -14,11 +14,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -34,15 +38,15 @@ public class TelaCadastroUsuarioController implements Initializable {
     @FXML
     private TextField txRepetirSenha;
     @FXML
-    private TextField txRespostaSenha;
+    private TextField txValorCasa;
     @FXML
-    private ComboBox cbPerguntaSenha;
+    private TextField txValorBanco;
     @FXML
     private Button btSalvar;
     @FXML
-    private Button btLimpar;
+    private Button btRetornarLogin;
     @FXML
-    private Button btSair;
+    private Button btLogout;
     
     private Stage dialogStage;
     private UsuarioBO bo = new UsuarioBO();
@@ -54,9 +58,7 @@ public class TelaCadastroUsuarioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        cbPerguntaSenha.getItems().addAll("[Selecione...]","Nome da Mãe?","Nome do Pai?","Nome Animal de Estimação",
-                "Filme Favorito");
-        cbPerguntaSenha.getSelectionModel().select(0);
+        
     } 
     
     public void setDialogStage(Stage dialogStage) {
@@ -78,15 +80,14 @@ public class TelaCadastroUsuarioController implements Initializable {
         if(txRepetirSenha.getText().trim().length()<6){
             throw new Exception("Senha deve ter pelo menos 6 digitos");
         }
-        if(txRespostaSenha.getText().trim().length()==0){
-            throw new Exception("Informe a resposta da pergunta de recuperação "
-                    + "de senha");
-        }
-        if(cbPerguntaSenha.getSelectionModel().isSelected(0)){
-            throw new Exception("Selecione uma pergunta de recuperação");
-        }
         if(!txSenha.getText().equals(txRepetirSenha.getText())){
             throw new Exception("Campo repetir senha deve ser igual ao campo senha");
+        }
+        if(!Util.testarValor(txValorBanco.getText())){
+            throw new Exception("Campo valor banco deve ser um numero!");
+        }
+        if(!Util.testarValor(txValorCasa.getText())){
+             throw new Exception("Campo valor casa deve ser um numero!");
         }
         
     }
@@ -97,9 +98,10 @@ public class TelaCadastroUsuarioController implements Initializable {
         
         try {
             validacao();
-            
             usuario.setNome(txUsuario.getText());
             usuario.setSenha(txSenha.getText());
+            usuario.setValorBanco(Double.parseDouble(txValorBanco.getText()));
+            usuario.setValorCasa(Double.parseDouble(txValorCasa.getText()));
             bo.cadastrarUsuario(usuario);
             Util.msgDialog("Usuário gravado com sucesso!", Alert.AlertType.INFORMATION);
         } catch (Exception ex) {
@@ -108,12 +110,26 @@ public class TelaCadastroUsuarioController implements Initializable {
     }
     
     @FXML
-    private void handBtLimpar(ActionEvent event){
-        
+    private void handBtRetornarLogin(ActionEvent event){
+        try {
+            openWindow("/br/edu/qi/view/TelaLogin.fxml", "Tela Login");
+        } catch (Exception ex) {
+          Util.msgDialog(ex.getMessage(), Alert.AlertType.ERROR);
+        }
     }
     
     @FXML
-    private void handBtSair(ActionEvent event){
+    private void handBtLogout(ActionEvent event){
         
+    }
+    
+    private void openWindow(String path, String title) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource(path));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle(title);
+        stage.show();
     }
 }

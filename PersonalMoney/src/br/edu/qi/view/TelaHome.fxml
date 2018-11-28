@@ -21,10 +21,10 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button fx:id="btAddGanhos" layoutX="28.0" layoutY="64.0" mnemonicParsing="false" onAction="#handBtAddGanhos" prefHeight="58.0" prefWidth="110.0" text="Receita" />
-                  <Button fx:id="btAddGastos" layoutX="312.0" layoutY="64.0" mnemonicParsing="false" onAction="#handBtAddGastos" prefHeight="58.0" prefWidth="118.0" text="Despesa" />
-                  <Button fx:id="btListarMovimentacao" layoutX="158.0" layoutY="64.0" mnemonicParsing="false" onAction="#handBtListarMovimentacao" prefHeight="58.0" prefWidth="129.0" text="Usuário" />
-                  <Button layoutX="470.0" layoutY="64.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="85.0" text="Logout" />
+                  <Button fx:id="btReceita" layoutX="28.0" layoutY="64.0" mnemonicParsing="false" onAction="#handBtReceita" prefHeight="58.0" prefWidth="110.0" text="Receita" />
+                  <Button fx:id="btDespesa" layoutX="312.0" layoutY="64.0" mnemonicParsing="false" onAction="#handBtDespesa" prefHeight="58.0" prefWidth="118.0" text="Despesa" />
+                  <Button fx:id="btUsuario" layoutX="158.0" layoutY="64.0" mnemonicParsing="false" onAction="#handBtUsuario" prefHeight="58.0" prefWidth="129.0" text="Usuário" />
+                  <Button fx:id="btLogout" layoutX="470.0" layoutY="64.0" mnemonicParsing="false" onAction="#handBtLogout" prefHeight="58.0" prefWidth="85.0" text="Logout" />
                   <Label layoutX="36.0" layoutY="14.0" text="Bem Vindo: " />
                   <TextField fx:id="txBemVindo" editable="false" layoutX="107.0" layoutY="10.0" />
                   <Label layoutX="298.0" layoutY="14.0" text="Escolha uma das opões abaixo" />

@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,11 +27,9 @@ import javafx.stage.Stage;
  */
 public class TelaPrincipalEditController implements Initializable {
     @FXML
-    private Button btAddGanhos;
+    private Button btReceita, btDespesa, btUsuario, btLogout;
     @FXML
-    private Button btAddGastos;
-    @FXML
-    private Button btListarMovimentacao;
+    private TextField txBemVindo;
     
     private Stage dialogStage;
     /**
@@ -46,32 +45,37 @@ public class TelaPrincipalEditController implements Initializable {
     }
 
     @FXML    
-    private void handBtAddGanhos(ActionEvent event){
+    private void handBtReceita(ActionEvent event){
      try {
-            openWindow("/br/edu/qi/view/TelaAddGanhos.fxml", "Tela de Ganhos");
+            
+            openWindow("/br/edu/qi/view/TelaReceita.fxml", "Tela Receita");
         } catch (Exception e) {
+            e.printStackTrace();
             Util.msgDialog(e.getMessage(),Alert.AlertType.ERROR);
         }   
     }
     
     @FXML    
-    private void handBtAddGastos(ActionEvent event){
+    private void handBtDespesa(ActionEvent event){
         try {
-            openWindow("/br/edu/qi/view/TelaAddGastos.fxml", "Tela de Gastos");
+            openWindow("/br/edu/qi/view/TelaAddGastos.fxml", "Tela Despesas");
         } catch (Exception e) {
             Util.msgDialog(e.getMessage(),Alert.AlertType.ERROR);
         }
     }
     
     @FXML    
-    private void handBtListarMovimentacao(ActionEvent event){
+    private void handBtUsuario(ActionEvent event){
         try {
-            openWindow("/br/edu/qi/view/TelaListarMovimentacao.fxml", "Registro de Ganhos e Gastos");
+            openWindow("/br/edu/qi/view/TelaCadastroUsuari.fxml", "Tela Usuário");
         } catch (Exception e) {
             Util.msgDialog(e.getMessage(),Alert.AlertType.ERROR);
         }
     }
-    
+    @FXML
+    private void handBtLogout(ActionEvent event){
+     Util.msgDialog("Sair do Sistema", Alert.AlertType.INFORMATION);
+    }
     private void openWindow(String path, String title) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource(path));
         Stage stage = new Stage();

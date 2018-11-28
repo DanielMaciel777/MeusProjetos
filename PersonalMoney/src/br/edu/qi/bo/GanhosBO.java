@@ -11,7 +11,10 @@ import br.edu.qi.dao.UsuarioDao;
 import br.edu.qi.model.Ganhos;
 import br.edu.qi.model.Usuario;
 import br.edu.qi.util.Sessao;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  *
@@ -29,7 +32,7 @@ public class GanhosBO {
 
     public GanhosBO() {
         dao = new GanhosDao();
-        listaGanhos = dao.findAll();
+        listaGanhos = dao.listarGanhosUsuario();
         usuDao = new UsuarioDao();
     }
 
@@ -82,9 +85,9 @@ public class GanhosBO {
     }
 
     public List<Ganhos> listarGanhos() {
-        listaGanhos = dao.findAll();
-        return listaGanhos;
-    }
+        listaGanhos = dao.listarGanhosUsuario();
+         return listaGanhos;
+          }           
 
     public void alterarGanhos(Ganhos gn, Ganhos antigo) throws Exception {
         if (!gn.getFormaPagamento().equals(antigo.getFormaPagamento()) && gn.getValor() != antigo.getValor()) {
@@ -125,7 +128,7 @@ public class GanhosBO {
         return dao.findByCod(id);
     }
     public void removerGanho(Ganhos ganho) throws Exception{
-        listaGanhos = dao.findAll();
+        listaGanhos = dao.listarGanhosUsuario();
         for (Ganhos listaGanho : listaGanhos) {
             if(listaGanho.getIdGanhos()==ganho.getIdGanhos()){
                 dao.delete(ganho);

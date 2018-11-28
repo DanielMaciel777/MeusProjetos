@@ -6,6 +6,7 @@
 package br.edu.qi.dao;
 
 import br.edu.qi.model.Ganhos;
+import br.edu.qi.util.Sessao;
 import java.io.Serializable;
 import java.util.List;
 
@@ -39,5 +40,14 @@ public class GanhosDao extends GenericDao<Ganhos, Serializable> {
         return null;
 
     }
-
+     public List<Ganhos> listarGanhosUsuario(){
+         List<Ganhos> lista = (List<Ganhos>) this.findAll();
+         List<Ganhos> listaUsuario = null;
+         for (Ganhos ganhos : lista) {
+             if(ganhos.getIdUsuario()==Sessao.getInstance().getUsuario().getIdUsuario()){
+            listaUsuario.add(ganhos);
+         }
+}
+         return listaUsuario;
+     }
 }

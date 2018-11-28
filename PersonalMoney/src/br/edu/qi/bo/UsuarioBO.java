@@ -58,13 +58,14 @@ public class UsuarioBO {
         }
         dao.delete(u);
     }
-    public Usuario realizarLogin(String usuario,String senha){
+    public Usuario realizarLogin(String usuario,String senha) throws Exception{
+        listaUsuario = dao.findAll();
         for (Usuario usu : listaUsuario) {
             if(usu.getNome().equals(usuario)&&usu.getSenha().equals(senha)){
                 return usu;
             }
         }
-        return null;
+        throw new Exception("Erro no login");
     }
     public Usuario getUsuarioId(int id){
         for (Usuario usuario : listaUsuario) {

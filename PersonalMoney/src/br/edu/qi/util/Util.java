@@ -6,6 +6,8 @@
 package br.edu.qi.util;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import javafx.scene.control.Alert;
 
@@ -37,6 +39,23 @@ public class Util {
         return texto;
     }
     
+    public static Date converteLocalDate(LocalDate local){
+        try{
+        Date date = Date.from(local.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        return date;
+        }catch(Exception e){
+            return null;
+    }
+    }
+    public static LocalDate converteDate(Date date){
+     
+        try {
+            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            return localDate;
+        } catch (Exception e) {
+            return null;
+        }
+    }
     public static boolean testarValor(String texto){
         try {
             double valor = Double.parseDouble(texto);

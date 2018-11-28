@@ -46,7 +46,7 @@ public class TelaReceitaController implements Initializable {
    @FXML
     private ComboBox cbCategoria;
    @FXML
-   private ComboBox cbForma;
+   private ComboBox cbFormaPagamento;
    @FXML
     private TextField txValor;
    @FXML
@@ -62,9 +62,11 @@ public class TelaReceitaController implements Initializable {
    @FXML
     private Button btLogout;
    @FXML
+    private Button btConfirmar;
+   @FXML
    private TableView tableReceita;
    @FXML
-   private TableColumn tcValor, tcCategoria, tcForma, tcData, tcUsuario, tcIdGanho;
+   private TableColumn tcValor, tcCategoriaGastos, tcFormaPagamento, tcData, tcUsuario, tcIdGanho;
    
    private ObservableList<ReceitaModel> dadosReceita;
    private Stage dialogStage;
@@ -83,12 +85,12 @@ public class TelaReceitaController implements Initializable {
         cbCategoria.getItems().addAll("[Selecione]","Salário","Aposentadoria",
                 "Pensão","Seguro Desemprego","Aluguel","Outras Receitas");
         cbCategoria.getSelectionModel().select(0);
-        cbForma.getItems().addAll("[Selecione]","Dinheiro","Cartão");
-        cbForma.getSelectionModel().select(0);
+        cbFormaPagamento.getItems().addAll("[Selecione]","Dinheiro","Cartão");
+        cbFormaPagamento.getSelectionModel().select(0);
         tcIdGanho.setCellValueFactory(new PropertyValueFactory<ReceitaModel,Integer>("idGanho"));
         tcUsuario.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("usuario"));
-        tcCategoria.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("categoria"));
-        tcForma.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("formaPagamento"));
+        tcCategoriaGastos.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("categoria"));
+        tcFormaPagamento.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("formaPagamento"));
         tcData.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("data"));
         tcValor.setCellValueFactory(new PropertyValueFactory<ReceitaModel,Double>("valor"));
         dadosReceita = FXCollections.observableArrayList();
@@ -106,14 +108,18 @@ public class TelaReceitaController implements Initializable {
            validacao();
            ganho.setCategoria(cbCategoria.getSelectionModel().getSelectedItem().toString());
            LocalDate localDate = dpData.getValue();
-           Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+           Date date = Util.converteLocalDate(localDate);
+           if(date==null){
+               Util.msgDialog("Preencha o campo de data", Alert.AlertType.ERROR);
+           }else{
            ganho.setDataGanhos(date);
            ganho.setDescricao(txDescricao.getText());
-           ganho.setFormaPagamento(cbForma.getSelectionModel().getSelectedItem().toString());
+           ganho.setFormaPagamento(cbFormaPagamento.getSelectionModel().getSelectedItem().toString());
            ganho.setIdUsuario(usuario.getIdUsuario());
            ganho.setValor(Double.parseDouble(txValor.getText()));
            bo.cadastrarGanhos(ganho);
            Util.msgDialog("Ganho gravado com sucesso!", Alert.AlertType.INFORMATION);
+           }
        } catch (Exception ex) {
            Util.msgDialog(ex.getMessage(), Alert.AlertType.ERROR);
        }
@@ -128,9 +134,9 @@ public class TelaReceitaController implements Initializable {
         txDescricao.setText(ganho.getDescricao());
         txValor.setText(String.valueOf(ganho.getValor()));
         cbCategoria.getSelectionModel().select(ganho.getCategoria());
-        cbForma.getSelectionModel().select(ganho.getFormaPagamento());
+        cbFormaPagamento.getSelectionModel().select(ganho.getFormaPagamento());
         Date date = ganho.getDataGanhos();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localDate = Util.converteDate(date);
         dpData.setValue(localDate);
     }
     }
@@ -159,12 +165,12 @@ public class TelaReceitaController implements Initializable {
         Ganhos novoGanho = new Ganhos();
         novoGanho.setCategoria(cbCategoria.getSelectionModel().getSelectedItem().toString());
         novoGanho.setDescricao(txDescricao.getText());
-        novoGanho.setFormaPagamento(cbForma.getSelectionModel().getSelectedItem().toString());
+        novoGanho.setFormaPagamento(cbFormaPagamento.getSelectionModel().getSelectedItem().toString());
         novoGanho.setIdGanhos(ganho.getIdGanhos());
         novoGanho.setIdUsuario(usuario.getIdUsuario());
         novoGanho.setValor(Double.parseDouble(txValor.getText()));
         LocalDate localDate = dpData.getValue();
-        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date date = Util.converteLocalDate(localDate);
         novoGanho.setDataGanhos(date);
        try {
            bo.alterarGanhos(novoGanho, ganho);
@@ -191,15 +197,16 @@ public class TelaReceitaController implements Initializable {
         if(!Util.testarValor(txValor.getText())){
             throw new Exception("Informe o valor ganho");
         }
-        if(Util.validaData(dpData.toString())==null){
+        if(dpData.getValue()==null){
             throw new Exception("Informe a Data");
         }
-        if(cbForma.getSelectionModel().isSelected(0)){
+        if(cbFormaPagamento.getSelectionModel().isSelected(0)){
             throw new Exception("Informe a forma do pagamento");
         }
         if(txDescricao.getText().trim().length()==0){
             throw new Exception("Informe uma descrição para o ganho");
         }
+        
     }
     private boolean validarSelecao(){
         int linha = tableReceita.getSelectionModel().getSelectedIndex();
@@ -207,5 +214,12 @@ public class TelaReceitaController implements Initializable {
             return false;
         }
         return true;
+    }
+    private void limparCampos(){
+      txDescricao.setText("");
+      txValor.setText("");
+      cbCategoria.getSelectionModel().select(0);
+      cbFormaPagamento.getSelectionModel().select(0);
+      dpData.setValue(null);
     }
 }
