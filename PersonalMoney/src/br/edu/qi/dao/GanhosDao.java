@@ -40,14 +40,20 @@ public class GanhosDao extends GenericDao<Ganhos, Serializable> {
         return null;
 
     }
-     public List<Ganhos> listarGanhosUsuario(){
+     public List<Ganhos> listarGanhos(){
          List<Ganhos> lista = (List<Ganhos>) this.findAll();
-         List<Ganhos> listaUsuario = null;
-         for (Ganhos ganhos : lista) {
-             if(ganhos.getIdUsuario()==Sessao.getInstance().getUsuario().getIdUsuario()){
-            listaUsuario.add(ganhos);
-         }
-}
-         return listaUsuario;
+          return lista;
      }
+     public int getIdGanho(Ganhos ganho){
+        List<Ganhos> lista = listarGanhos();
+         for (Ganhos g : lista) {
+             if(ganho.getDescricao().equals(g.getDescricao())
+                     &&ganho.getValor()==g.getValor()
+                     &&ganho.getCategoria().equals(g.getCategoria())){
+                 return g.getIdGanhos();
+         }
+            
+     }
+          return -1;
+}
 }

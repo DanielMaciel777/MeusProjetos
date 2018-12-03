@@ -15,7 +15,9 @@ import br.edu.qi.view.ReceitaModel;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,15 +66,27 @@ public class TelaReceitaController implements Initializable {
    @FXML
     private Button btConfirmar;
    @FXML
-   private TableView tableReceita;
+   private TableView<ReceitaModel> tableReceita;
    @FXML
-   private TableColumn tcValor, tcCategoriaGastos, tcFormaPagamento, tcData, tcUsuario, tcIdGanho;
+   private TableColumn<ReceitaModel,Double> tcValor; 
+   @FXML
+   private TableColumn<ReceitaModel,String> tcCategoriaGastos;
+      
+   @FXML
+   private TableColumn<ReceitaModel,String> tcData;
+   @FXML
+   private TableColumn<ReceitaModel,Boolean> tcSelecao;
    
+   @FXML
+   private TableColumn<ReceitaModel,String> tcFormaPagamento;
+   @FXML
+   private TableColumn<ReceitaModel,Integer> tcIdReceita;
    private ObservableList<ReceitaModel> dadosReceita;
    private Stage dialogStage;
    private GanhosBO bo;
    private Ganhos ganho;
-   private Usuario usuario = Sessao.getInstance().getUsuario();
+   private Ganhos g;
+   private Usuario logado = Sessao.getInstance().getUsuario();
    private ReceitaModel recModel;
     /**
      * Initializes the controller class.
@@ -80,27 +94,50 @@ public class TelaReceitaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ganho = new Ganhos();
         bo= new GanhosBO();
         recModel = new ReceitaModel();
+        
         cbCategoria.getItems().addAll("[Selecione]","Salário","Aposentadoria",
                 "Pensão","Seguro Desemprego","Aluguel","Outras Receitas");
         cbCategoria.getSelectionModel().select(0);
         cbFormaPagamento.getItems().addAll("[Selecione]","Dinheiro","Cartão");
         cbFormaPagamento.getSelectionModel().select(0);
-        tcIdGanho.setCellValueFactory(new PropertyValueFactory<ReceitaModel,Integer>("idGanho"));
-        tcUsuario.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("usuario"));
-        tcCategoriaGastos.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("categoria"));
-        tcFormaPagamento.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("formaPagamento"));
-        tcData.setCellValueFactory(new PropertyValueFactory<ReceitaModel,String>("data"));
-        tcValor.setCellValueFactory(new PropertyValueFactory<ReceitaModel,Double>("valor"));
+        tcIdReceita.setCellValueFactory(new PropertyValueFactory<>("idReceita"));
+        tcSelecao.setCellValueFactory(new PropertyValueFactory<>("selecao"));
+        tcCategoriaGastos.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+        tcFormaPagamento.setCellValueFactory(new PropertyValueFactory<>("formaPagamento"));
+        tcData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        tcValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
         dadosReceita = FXCollections.observableArrayList();
-        tableReceita.setItems(dadosReceita);
+        dadosReceita.clear();
+        dadosReceita.addAll(this.preencherTabela());
+        tableReceita.setItems(dadosReceita); 
+        }
+      
                  
-    }
+    
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }    
+    
+    private List<ReceitaModel> preencherTabela(){
+     tableReceita.getItems().clear();
+     
+     List<ReceitaModel> list = new ArrayList<>();
+     List<Ganhos> listaGanhos=bo.listarGanhos();
+        for (Ganhos gn : listaGanhos) {
+            ReceitaModel model = new ReceitaModel();
+            model.setCategoria(gn.getCategoria());
+            model.setData(Util.converteData(gn.getDataGanhos()));
+            model.setFormaPagamento(gn.getFormaPagamento());
+            model.setIdReceita(gn.getIdGanhos());
+            model.setValor(gn.getValor());
+            list.add(model);
+        }
+     return list;
+    }
     
     @FXML
     private void handBtSalvar(ActionEvent event){
@@ -115,10 +152,13 @@ public class TelaReceitaController implements Initializable {
            ganho.setDataGanhos(date);
            ganho.setDescricao(txDescricao.getText());
            ganho.setFormaPagamento(cbFormaPagamento.getSelectionModel().getSelectedItem().toString());
-           ganho.setIdUsuario(usuario.getIdUsuario());
+           ganho.setIdUsuario(logado.getIdUsuario());
            ganho.setValor(Double.parseDouble(txValor.getText()));
-           bo.cadastrarGanhos(ganho);
+           int idReceita=bo.cadastrarGanhos(ganho);
+           ganho.setIdGanhos(idReceita);
+           this.addTabela(ganho);
            Util.msgDialog("Ganho gravado com sucesso!", Alert.AlertType.INFORMATION);
+           this.limparCampos();
            }
        } catch (Exception ex) {
            Util.msgDialog(ex.getMessage(), Alert.AlertType.ERROR);
@@ -126,68 +166,64 @@ public class TelaReceitaController implements Initializable {
     }
     @FXML
     private void handBtAlterar(ActionEvent event){
-        if(!validarSelecao()){
-            Util.msgDialog("Selecione uma linha!", Alert.AlertType.INFORMATION);
-        }else{
         recModel = (ReceitaModel)tableReceita.getSelectionModel().getSelectedItem();
-        ganho = bo.buscaId(recModel.getIdGanho());
-        txDescricao.setText(ganho.getDescricao());
-        txValor.setText(String.valueOf(ganho.getValor()));
-        cbCategoria.getSelectionModel().select(ganho.getCategoria());
-        cbFormaPagamento.getSelectionModel().select(ganho.getFormaPagamento());
-        Date date = ganho.getDataGanhos();
+        if(recModel==null){
+         Util.msgDialog("Selecione uma linha da tabela", Alert.AlertType.INFORMATION);
+        }else{
+        g = bo.buscaId(recModel.getIdReceita());
+        txDescricao.setText(g.getDescricao());
+        txValor.setText(String.valueOf(g.getValor()));
+        cbCategoria.getSelectionModel().select(g.getCategoria());
+        cbFormaPagamento.getSelectionModel().select(g.getFormaPagamento());
+        Date date = g.getDataGanhos();
         LocalDate localDate = Util.converteDate(date);
         dpData.setValue(localDate);
+        }
     }
-    }
+    
     @FXML
-    private void handBtRemover(ActionEvent event){
-         if(!validarSelecao()){
-             Util.msgDialog("Selecione uma Linha!", Alert.AlertType.INFORMATION);
+    private void handBtRemover(ActionEvent event) throws Exception{
+         ReceitaModel model = tableReceita.getSelectionModel().getSelectedItem();
+         if(model==null){
+           Util.msgDialog("Selecione uma linha", Alert.AlertType.ERROR);
          }else{
-             recModel = (ReceitaModel)tableReceita.getSelectionModel().getSelectedItem();
-             ganho = bo.buscaId(recModel.getIdGanho());
-             try {
-                 bo.removerGanho(ganho);
-                 Util.msgDialog("Ganho removido com sucesso!", Alert.AlertType.INFORMATION);
-             } catch (Exception ex) {
-                 Util.msgDialog(ex.getMessage(), Alert.AlertType.ERROR);
-             }
+         dadosReceita.remove(model);
+         bo.removerGanho(ganho);
          }
-    }
+         }
     @FXML
     private void handBtLogout(ActionEvent event){
         Sessao.getInstance().setUsuario(null);
         
     }
     @FXML
-    private void handBtConfirmar(ActionEvent event){
-        Ganhos novoGanho = new Ganhos();
-        novoGanho.setCategoria(cbCategoria.getSelectionModel().getSelectedItem().toString());
-        novoGanho.setDescricao(txDescricao.getText());
-        novoGanho.setFormaPagamento(cbFormaPagamento.getSelectionModel().getSelectedItem().toString());
-        novoGanho.setIdGanhos(ganho.getIdGanhos());
-        novoGanho.setIdUsuario(usuario.getIdUsuario());
-        novoGanho.setValor(Double.parseDouble(txValor.getText()));
+    private void handBtConfirmar(ActionEvent event) throws Exception{
+        this.validacao();
+        Ganhos ganhoAnterior = g;
+        g.setCategoria(cbCategoria.getSelectionModel().getSelectedItem().toString());
+        g.setDescricao(txDescricao.getText());
+        g.setFormaPagamento(cbFormaPagamento.getSelectionModel().getSelectedItem().toString());
+        g.setValor(Double.parseDouble(txValor.getText()));
         LocalDate localDate = dpData.getValue();
         Date date = Util.converteLocalDate(localDate);
-        novoGanho.setDataGanhos(date);
+        g.setDataGanhos(date);
        try {
-           bo.alterarGanhos(novoGanho, ganho);
+           bo.alterarGanhos(g, ganhoAnterior);
            Util.msgDialog("Alteração concluida com sucesso", Alert.AlertType.INFORMATION);
        } catch (Exception ex) {
            Util.msgDialog(ex.getMessage(), Alert.AlertType.ERROR);
        }
     }
     private void addTabela(Ganhos ganho){
+        //tableReceita.getItems().clear();
         ReceitaModel dados = new ReceitaModel();
-        dados.setIdGanho(ganho.getIdGanhos());
+        dados.setIdReceita(ganho.getIdGanhos());
         dados.setCategoria(ganho.getCategoria());
         dados.setData(Util.converteData(ganho.getDataGanhos()));
         dados.setFormaPagamento(ganho.getFormaPagamento());
-        dados.setUsuario(usuario.getNome());
         dados.setValor(ganho.getValor());
         this.dadosReceita.add(dados);
+        tableReceita.setItems(dadosReceita);
     }
     
     private void validacao() throws Exception{

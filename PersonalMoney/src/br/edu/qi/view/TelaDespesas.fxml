@@ -36,11 +36,11 @@
                         <Label text="Categoria:" />
                         <Label text="Valor:" GridPane.rowIndex="1" />
                         <Label text="Data:" GridPane.rowIndex="2" />
-                        <ComboBox fx:id="cbCategoriaGastos" prefHeight="25.0" prefWidth="181.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cbCategoriaGastos" prefHeight="25.0" prefWidth="181.0" promptText="Selecione...." GridPane.columnIndex="1" />
                         <TextField fx:id="txValor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <DatePicker fx:id="dpData" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label text="Forma Pagamento" GridPane.rowIndex="3" />
-                        <ComboBox fx:id="cbFormaPagamento" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cbFormaPagamento" prefWidth="150.0" promptText="Selecione...." GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                   <Label layoutX="277.0" layoutY="19.0" text="Descrição:" />
@@ -53,15 +53,16 @@
                         <Button fx:id="btLogout" mnemonicParsing="false" onAction="#handBtLogout" prefHeight="37.0" prefWidth="67.0" text="Logout" />
                      </children>
                   </HBox>
-                  <TableView layoutX="14.0" layoutY="173.0" prefHeight="135.0" prefWidth="416.0">
+                  <TableView fx:id="tbGastos" layoutX="14.0" layoutY="121.0" prefHeight="187.0" prefWidth="478.0">
                     <columns>
-                      <TableColumn fx:id="tcUsuario" prefWidth="75.0" text="Usuário" />
-                      <TableColumn fx:id="tcCategoria" prefWidth="75.0" text="Categoria" />
-                        <TableColumn fx:id="tcForma" prefWidth="106.0" text="FormaPagamento" />
-                        <TableColumn fx:id="tcValor" prefWidth="85.0" text="Valor" />
-                        <TableColumn fx:id="tcData" prefWidth="71.0" text="Data" />
+                      <TableColumn fx:id="tcUsuario" prefWidth="75.0" text="Id Despesa" />
+                      <TableColumn fx:id="tcCategoria" prefWidth="113.0" text="Categoria" />
+                        <TableColumn fx:id="tcForma" prefWidth="130.0" text="FormaPagamento" />
+                        <TableColumn fx:id="tcValor" prefWidth="71.0" text="Valor" />
+                        <TableColumn fx:id="tcData" prefWidth="85.0" text="Data" />
                     </columns>
                   </TableView>
+                  <Button fx:id="btConfirmar" layoutX="442.0" layoutY="320.0" mnemonicParsing="false" onAction="#handBtConfirmar" prefHeight="37.0" prefWidth="119.0" text="ConfirmarAlteração" />
                </children>
             </AnchorPane>
         </items>

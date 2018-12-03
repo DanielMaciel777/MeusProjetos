@@ -46,11 +46,13 @@
                         <TextField fx:id="txValorCasa" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <HBox layoutX="14.0" layoutY="158.0" prefHeight="44.0" prefWidth="250.0" spacing="40.0">
+                  <HBox layoutX="14.0" layoutY="158.0" prefHeight="44.0" prefWidth="515.0" spacing="40.0">
                      <children>
                         <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#handBtSalvar" prefHeight="36.0" prefWidth="55.0" text="Salvar" />
+                        <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#handBtAlterar" prefHeight="36.0" prefWidth="52.0" text="Alterar" />
+                        <Button fx:id="btSalvarAlteracao" mnemonicParsing="false" onAction="#handBtSalvarAlteracao" prefHeight="37.0" prefWidth="101.0" text="Salvar Alteração" />
                         <Button fx:id="btRetornarLogin" mnemonicParsing="false" onAction="#handBtRetornarLogin" prefHeight="36.0" prefWidth="59.0" text="Login" />
-                        <Button fx:id="btLogout" layoutX="105.0" layoutY="10.0" mnemonicParsing="false" onAction="#handBtLogout" prefHeight="36.0" prefWidth="59.0" text="Logout" />
+                        <Button fx:id="btSair" mnemonicParsing="false" onAction="#handBtSair" prefHeight="36.0" prefWidth="59.0" text="Sair" />
                      </children>
                   </HBox>
                </children>

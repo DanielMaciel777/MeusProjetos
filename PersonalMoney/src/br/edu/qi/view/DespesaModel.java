@@ -5,39 +5,34 @@
  */
 package br.edu.qi.view;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
  * @author danie
  */
-public class ReceitaModel {
-    private SimpleIntegerProperty idReceita = new SimpleIntegerProperty();
-    private SimpleBooleanProperty selecao = new SimpleBooleanProperty();
+public class DespesaModel {
+    private SimpleStringProperty usuario = new SimpleStringProperty();
+    private SimpleStringProperty forma = new SimpleStringProperty();
     private SimpleStringProperty categoria = new SimpleStringProperty();
-    private SimpleStringProperty formaPagamento = new SimpleStringProperty();
     private SimpleStringProperty data = new SimpleStringProperty();
     private SimpleDoubleProperty valor = new SimpleDoubleProperty();
 
-    public int getIdReceita() {
-        return idReceita.get();
+    public String getUsuario() {
+        return usuario.get();
     }
 
-    public void setIdReceita(int idReceita) {
-        this.idReceita.set(idReceita);
-    }
-    
-    
-
-    public boolean getSelecao() {
-        return selecao.get();
+    public void setUsuario(String usuario) {
+        this.usuario.set(usuario);
     }
 
-    public void setSelecao(boolean selecao) {
-        this.selecao.set(selecao);
+    public String getForma() {
+        return forma.get();
+    }
+
+    public void setForma(String forma) {
+        this.forma.set(forma);
     }
 
     public String getCategoria() {
@@ -46,14 +41,6 @@ public class ReceitaModel {
 
     public void setCategoria(String categoria) {
         this.categoria.set(categoria);
-    }
-
-    public String getFormaPagamento() {
-        return formaPagamento.get();
-    }
-
-    public void setFormaPagamento(String formaPagamento) {
-        this.formaPagamento.set(formaPagamento);
     }
 
     public String getData() {

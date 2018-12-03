@@ -11,6 +11,7 @@ import br.edu.qi.dao.UsuarioDao;
 import br.edu.qi.model.Ganhos;
 import br.edu.qi.model.Usuario;
 import br.edu.qi.util.Sessao;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -32,7 +33,7 @@ public class GanhosBO {
 
     public GanhosBO() {
         dao = new GanhosDao();
-        listaGanhos = dao.listarGanhosUsuario();
+        listaGanhos = dao.listarGanhos();
         usuDao = new UsuarioDao();
     }
 
@@ -57,13 +58,14 @@ public class GanhosBO {
      * @param gn
      * @throws Exception
      */
-    public void cadastrarGanhos(Ganhos gn) throws Exception {
+    public int cadastrarGanhos(Ganhos gn) throws Exception {
         if (existeGanhos(gn)) {
             throw new Exception("Ganho já informado");
         }
         dao.save(gn);
         atualizarSaldo(gn.getValor(), gn.getFormaPagamento());
-
+        int idReceita= dao.getIdGanho(gn);
+        return idReceita;
     }
 
     /**
@@ -85,8 +87,14 @@ public class GanhosBO {
     }
 
     public List<Ganhos> listarGanhos() {
-        listaGanhos = dao.listarGanhosUsuario();
-         return listaGanhos;
+        List<Ganhos> list = new ArrayList<>();
+        listaGanhos = dao.listarGanhos();
+        for (Ganhos ganho : listaGanhos) {
+            if(ganho.getIdUsuario()==usu.getIdUsuario()){
+                 list.add(ganho);
+            }
+        }
+         return list;
           }           
 
     public void alterarGanhos(Ganhos gn, Ganhos antigo) throws Exception {
@@ -102,14 +110,14 @@ public class GanhosBO {
     }
 
     private void alterarFormaPagamento(String formaPagamento, double valor) throws Exception {
-        double x = 0;
+        double valorRecebido = 0;
         if (formaPagamento.equals("dinheiro")) {
-            x = usu.getValorBanco();
-            usu.setValorBanco(x - valor);
+            valorRecebido = usu.getValorBanco();
+            usu.setValorBanco(valorRecebido - valor);
             usu.setValorCasa(usu.getValorCasa() + valor);
         } else {
-            x = usu.getValorCasa();
-            usu.setValorCasa(x - valor);
+            valorRecebido = usu.getValorCasa();
+            usu.setValorCasa(valorRecebido - valor);
             usu.setValorBanco(usu.getValorBanco() + valor);
         }
         usuDao.update(usu);
@@ -128,7 +136,7 @@ public class GanhosBO {
         return dao.findByCod(id);
     }
     public void removerGanho(Ganhos ganho) throws Exception{
-        listaGanhos = dao.listarGanhosUsuario();
+        listaGanhos = dao.listarGanhos();
         for (Ganhos listaGanho : listaGanhos) {
             if(listaGanho.getIdGanhos()==ganho.getIdGanhos()){
                 dao.delete(ganho);

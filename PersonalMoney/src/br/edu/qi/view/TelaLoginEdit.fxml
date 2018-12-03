@@ -38,14 +38,10 @@
                      <children>
                         <Button fx:id="btEntrar" mnemonicParsing="false" onAction="#handBtEntrar" text="Entrar" />
                         <Button fx:id="btLimpar" mnemonicParsing="false" onAction="#handBtLimpar" text="Limpar" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="7.0" layoutY="160.0" prefHeight="49.0" prefWidth="301.0">
-                     <children>
                         <Button fx:id="btCadastrar" mnemonicParsing="false" onAction="#handBtCadastrar" text="Cadastrar" />
-                        <Button fx:id="btSenha" mnemonicParsing="false" onAction="#handBtSenha" text="Esqueci a senha" />
                      </children>
                   </HBox>
+                  <HBox layoutX="7.0" layoutY="160.0" prefHeight="49.0" prefWidth="301.0" />
                </children>
             </AnchorPane>
         </items>

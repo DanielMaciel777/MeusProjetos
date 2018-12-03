@@ -38,20 +38,19 @@
                         <Label text="Data:" GridPane.rowIndex="2" />
                         <Label text="Forma de Pagamento:" GridPane.rowIndex="3" />
                         <TextField fx:id="txValor" prefHeight="25.0" prefWidth="133.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="cbCategoria" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <ComboBox fx:id="cbFormaPagamento" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cbCategoria" prefWidth="150.0" promptText="Selecione...." GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cbFormaPagamento" prefWidth="150.0" promptText="Selecione..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <DatePicker fx:id="dpData" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <HBox layoutX="14.0" layoutY="199.0" prefHeight="39.0" prefWidth="379.0" spacing="40.0" />
-                  <TableView fx:id="tableDespesas" layoutX="6.0" layoutY="150.0" prefHeight="197.0" prefWidth="510.0">
+                  <TableView fx:id="tableReceita" layoutX="6.0" layoutY="150.0" prefHeight="197.0" prefWidth="510.0">
                     <columns>
-                        <TableColumn fx:id="tcIdGanho" prefWidth="75.0" text="IdGanho" />
-                      <TableColumn fx:id="tcUsuario" prefWidth="75.0" text="Usuário" />
-                      <TableColumn fx:id="tcCategoriaGastos" prefWidth="75.0" text="Categoria" />
-                        <TableColumn fx:id="tcFormaPagamento" prefWidth="128.0" text="Forma de Pagamento" />
-                        <TableColumn fx:id="tcValor" prefWidth="73.0" text="Valor" />
-                        <TableColumn fx:id="tcData" prefWidth="84.0" text="Data" />
+                        <TableColumn fx:id="tcIdReceita" prefWidth="75.0" text="Id Receita" />
+                      <TableColumn fx:id="tcCategoriaGastos" prefWidth="111.0" text="Categoria" />
+                        <TableColumn fx:id="tcFormaPagamento" prefWidth="140.0" text="Forma de Pagamento" />
+                        <TableColumn fx:id="tcValor" prefWidth="90.0" text="Valor" />
+                        <TableColumn fx:id="tcData" prefWidth="93.0" text="Data" />
                     </columns>
                   </TableView>
                   <Label layoutX="271.0" layoutY="14.0" text="Descrição:" />

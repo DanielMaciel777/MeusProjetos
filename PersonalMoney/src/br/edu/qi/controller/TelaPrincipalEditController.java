@@ -48,7 +48,7 @@ public class TelaPrincipalEditController implements Initializable {
     private void handBtReceita(ActionEvent event){
      try {
             
-            openWindow("/br/edu/qi/view/TelaReceita.fxml", "Tela Receita");
+            openWindow("/br/edu/qi/view/TelaReceitas.fxml", "Tela Receita");
         } catch (Exception e) {
             e.printStackTrace();
             Util.msgDialog(e.getMessage(),Alert.AlertType.ERROR);
@@ -77,7 +77,9 @@ public class TelaPrincipalEditController implements Initializable {
      Util.msgDialog("Sair do Sistema", Alert.AlertType.INFORMATION);
     }
     private void openWindow(String path, String title) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(path));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+        Parent root = loader.load();
+        //Parent root = FXMLLoader.load(getClass().getResource(path));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setResizable(false);
